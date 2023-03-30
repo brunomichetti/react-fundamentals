@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import '../box-styles.css'
+import {string, object} from 'prop-types'
 
 // 🐨 add a className prop to each div and apply the correct class names
 // based on the text content
@@ -14,14 +15,27 @@ import '../box-styles.css'
 // 🐨 also use the style prop to make the font italic
 // 💰 Here are available style attributes: backgroundColor, fontStyle
 
-const smallBox = <div>small lightblue box</div>
-const mediumBox = <div>medium pink box</div>
-const largeBox = <div>large orange box</div>
+// const smallBox = <div className='box box--small' style={{backgroundColor: 'lightblue', fontStyle: 'italic'}}>small lightblue box</div>
+const mediumBox = <div className='box box--medium' style={{backgroundColor: 'pink', fontStyle: 'italic'}}>medium pink box</div>
+const largeBox = <div className='box box--large' style={{backgroundColor: 'orange', fontStyle: 'italic'}}>large orange box</div>
+
+const Box = ({boxClassName, boxStyle, boxText}) =>
+    <div className={boxClassName} style={{...boxStyle, fontStyle: 'italic'}}>
+        {boxText}
+    </div>
+
+
+Box.propStyles = {
+    boxClassName: string,
+    boxStyle: object,
+    boxText: string,
+}
+
 
 function App() {
   return (
     <div>
-      {smallBox}
+      <Box boxClassName='box box--small' boxStyle={{backgroundColor: 'lightblue'}} boxText='small lightblue box'/>
       {mediumBox}
       {largeBox}
     </div>
